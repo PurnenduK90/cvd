@@ -1,0 +1,137 @@
+# Package Overview
+package_name: cvd_model
+
+# Data Files
+training_data_file: CVD_cleaned.csv
+
+# Variables
+# The variable we are attempting to predict (Survival)
+target: Heart_Disease
+
+pipeline_name: cvd_pipe
+pipeline_save_file: cvd__model_output_v
+
+features:      # final features to be use
+  - General_Health
+  - Checkup
+  - Exercise 
+  - Skin_Cancer
+  - Other_Cancer
+  - Depression
+  - Diabetes
+  - Arthritis
+  - Sex
+  - Age_Category
+  - Height_cm
+  - Weight_kg
+  - BMI
+  - Smoking_History
+  - Alcohol_Consumption
+  - Fruit_Consumption
+  - Green_Vegetables_Consumption
+  - FriedPotato_Consumption
+               
+#unused_fields:  # Features to drop before pipeline
+#Features are dropped in pipeline hence needed in preprocessing
+
+numerical_features:
+  - Height_cm
+  - Weight_kg
+  - BMI
+  - Alcohol_Consumption
+  - Fruit_Consumption
+  - Green_Vegetables_Consumption
+  - FriedPotato_Consumption
+
+categorical_features:
+  - General_Health
+  - Checkup
+  - Exercise 
+  - Skin_Cancer
+  - Other_Cancer
+  - Depression
+  - Diabetes
+  - Arthritis
+  - Sex
+  - Smoking_History
+
+# Features inside processing pipeline
+
+age_var: Age_Category 
+genhealth_var: General_Health
+checkup_var : Checkup
+
+dict_yr:
+  2011: 0
+  2012: 1
+
+dict_mnth:
+  January: 0
+  February: 1
+  December: 2
+  March: 3
+  November: 4
+  April: 5
+  October: 6
+  May: 7
+  September: 8
+  June: 9
+  July: 10
+  August: 11
+
+dict_season:
+  spring: 0
+  winter: 1
+  summer: 2
+  fall: 3
+
+dict_weathersit:
+  Heavy Rain: 0
+  Light Rain: 1
+  Mist: 2
+  Clear: 3
+
+dict_holiday:
+  Yes: 0
+  No: 1
+
+dict_workingday:
+  No: 0
+  Yes: 1
+
+dict_hr:
+  4am: 0
+  3am: 1
+  5am: 2
+  2am: 3
+  1am: 4
+  12am: 5
+  6am: 6
+  11pm: 7
+  10pm: 8
+  10am: 9
+  9pm: 10
+  11am: 11
+  7am: 12
+  9am: 13
+  8pm: 14
+  2pm: 15
+  1pm: 16
+  12pm: 17
+  3pm: 18
+  4pm: 19
+  7pm: 20
+  8am: 21
+  6pm: 22
+  5pm: 23
+
+# set train/test split
+test_size: 0.20
+
+# to set the random seed
+random_state: 11
+
+# alogrithm parameters
+n_estimators: 20
+max_depth: 5
+learning_rate: 0.1
