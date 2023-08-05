@@ -34,13 +34,13 @@ def run_training(debug=False) -> None:
     speed = len(y_pred)/itime
     report = classification_report(y_test, y_pred, output_dict=True)
     if debug:
-        print("#"*50)
+        print("#"*55)
         print(f"Accuracy = {report['accuracy']:0.02f} %, Inference = {speed:0.02f} predictions/sec")
         del report['accuracy']
         report_df = pd.DataFrame(report).T
-        print("_"*50)
+        print("_"*55)
         print(report_df)
-        print("_"*50) 
+        print("_"*55) 
     # persist trained model
     save_pipeline(pipeline_to_persist= pipe)
     # printing the score

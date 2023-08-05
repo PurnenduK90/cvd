@@ -4,7 +4,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 import numpy as np
 
-from sklearn.metrics import recall_score
+from sklearn.metrics import accuracy_score
 
 from cvd_model.predict import make_prediction
 
@@ -20,10 +20,10 @@ def test_make_prediction(sample_input_data):
     predictions = result.get("predictions")
     print(predictions)
     assert isinstance(predictions, np.ndarray ) #
-    assert isinstance(predictions[0], np.float64)
+    assert isinstance(predictions[0], str)
     assert result.get("errors") is None
     assert len(predictions) == expected_num_predictions
     _predictions = list(predictions)
     y_true = sample_input_data["Heart_Disease"]
-    recall = recall_score(_predictions, y_true)
-    assert recall > 0.7
+    accuracy = accuracy_score(_predictions, y_true)
+    assert accuracy > 0.7

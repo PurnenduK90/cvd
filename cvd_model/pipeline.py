@@ -14,12 +14,16 @@ from cvd_model.processing.features import genhealth
 from cvd_model.processing.features import checkup
 
 num_features = config.model_config.numerical_features
-cat_features = config.model_config.categorical_features.drop([
-    config.model_config.genhealth_var,
-    config.model_config.age_var,
-    config.model_config.checkup.var
-])
-
+cat_features = list(
+    filter(
+        lambda item: item not in [
+            config.model_config.genhealth_var,
+            config.model_config.age_var,
+            config.model_config.checkup_var
+        ],
+        config.model_config.categorical_features
+    )
+)
 preprocessing = ColumnTransformer(transformers=[
     ("numerical", numeric, num_features),
     ("categorical", categorical, cat_features),

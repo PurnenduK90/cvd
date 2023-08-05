@@ -1,0 +1,46 @@
+name: CT Pipeline
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  train:
+    runs-on: self-hosted
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: pip install -r requirements/requirements.txt
+    - name: Train and save pipeline
+      run: python cvd_model/train_pipeline.py
+    - uses: actions/upload-artifact@v2
+      with:
+        name: my-trained-pipeline
+        path: cvd_model/trained_models/*.pkl
+
+  test:
+    needs: train
+    runs-on: self-hosted
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.11'
+    - uses: actions/download-artifact@v2
+      with:
+        name: my-trained-pipeline
+    - run: mv *.pkl cvd_model/trained_models/
+    - name: Install dependencies
+      run: pip install -r requirements/test_requirements.txt
+    - name: Test with pytest
+      run: pytest

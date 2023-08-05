@@ -7,7 +7,7 @@ import pandas as pd
 
 from cvd_model import __version__ as _version
 from cvd_model.config.core import config
-from cvd_model.pipeline import bikeshare_pipe
+from cvd_model.pipeline import pipe
 from cvd_model.processing.data_manager import load_pipeline
 from cvd_model.processing.validation import validate_inputs
 
@@ -25,7 +25,7 @@ def make_prediction(*,input_data:Union[pd.DataFrame, dict]) -> dict:
     results = {"predictions": None,"version": _version, "errors": errors}
     if not errors:
 
-        predictions = bikeshare_pipe.predict(indexed_data)
+        predictions = pipe.predict(indexed_data)
         results = {"predictions": predictions,"version": _version, "errors": errors}
         #print(results)
 

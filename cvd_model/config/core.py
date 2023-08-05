@@ -26,7 +26,6 @@ class AppConfig(BaseModel):
 
     package_name: str
     training_data_file: str
-    test_data_file: str
     pipeline_save_file: str
 
 
@@ -37,9 +36,10 @@ class ModelConfig(BaseModel):
     """
 
     target: str
+
     features: List[str]
     numerical_features: List[str]
-    ategorical_features: List[str]
+    categorical_features: List[str]
     
     age_var: str
     genhealth_var: str
@@ -48,6 +48,7 @@ class ModelConfig(BaseModel):
     test_size:float
 
     random_state: int
+
     n_estimators: int
     max_depth: int
     learning_rate: float

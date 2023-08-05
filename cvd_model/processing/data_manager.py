@@ -13,8 +13,6 @@ from cvd_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 
 
 ##  Pre-Pipeline Preparation
-
-    
 # 2. processing CVD
 
 def pre_pipeline_preparation(*, data_frame: pd.DataFrame) -> pd.DataFrame:
