@@ -9,3 +9,4 @@ feature_engine>=1.6.0,<2.0.0
 imblearn
 fastapi
 uvicorn
+cvd_model-0.0.1-py3-none-any.whl

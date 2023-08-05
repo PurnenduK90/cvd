@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
-from bikeshare_model import __version__ as model_version
-from bikeshare_model.predict import make_prediction
+from cvd_model import __version__ as model_version
+from cvd_model.predict import make_prediction
 
 from app import __version__, schemas
 from app.config import settings
@@ -35,8 +35,9 @@ async def predict(input_data: schemas.MultipleDataInputs) -> Any:
     input_df = pd.DataFrame(jsonable_encoder(input_data.inputs))
     
     results = make_prediction(input_data=input_df.replace({np.nan: None}))
-
+    print(results)
     if results["errors"] is not None:
         raise HTTPException(status_code=400, detail=json.loads(results["errors"]))
-
+    results["predictions"] = list(results["predictions"] )
+    print(results)
     return results
