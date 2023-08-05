@@ -7,7 +7,7 @@ from setuptools import find_packages, setup
 
 # Package meta-data.
 NAME = 'cvd_model'
-DESCRIPTION = "bikeshare dataset classification model package "
+DESCRIPTION = "CVD dataset classification model package "
 EMAIL = "------"
 AUTHOR = "----------"
 REQUIRES_PYTHON = ">=3.11.0"
